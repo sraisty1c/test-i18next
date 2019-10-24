@@ -1,0 +1,70 @@
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// const babelOptions = {
+//   babelrc: true,
+//   extends: path.join(__dirname, '/.babelrc'),
+//   cacheDirectory: true
+// };
+
+module.exports = {
+  mode: 'development',
+  entry: {
+    app: ['./src/app/index.tsx', 'webpack-hot-middleware/client'],
+    vendor: ['react', 'react-dom'],
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'js/[name].bundle.js',
+  },
+  // watch: true,
+  // watchOptions: {
+  //   ignored: /node_modules/,
+  //   aggregateTimeout: 300,
+  //   poll: 1000
+  // },
+  // devtool: 'source-map',
+  devtool: 'inline-source-map',
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+          // {
+          //   loader: 'babel-loader',
+          //   options: babelOptions
+          // },
+          {
+            loader: 'ts-loader',
+            // options: { transpileOnly: true }
+          },
+        ],
+      },
+      // {
+      //   test: /\.jsx?$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {
+      //       loader: 'babel-loader',
+      //       options: babelOptions
+      //     }
+      //   ]
+      // },
+      {
+        test: /\.js$/,
+        use: 'source-map-loader',
+        enforce: 'pre',
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'app', 'index.html') }),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+};
