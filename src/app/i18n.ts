@@ -1,7 +1,8 @@
-import i18n, { TFunction } from 'i18next';
+// import * as i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-// import i18nextDefault, { TFunction } from 'i18next';
 import { appStrings } from '../../assets/i18n/appStrings.json';
+
+import i18n = require('i18next');
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // const i18next: typeof i18nextDefault = require('i18next');
