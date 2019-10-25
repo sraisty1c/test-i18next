@@ -16,13 +16,9 @@
       "dom"
     ],
     "esModuleInterop": true,
-    // "skipLibCheck": true,
     "noUnusedLocals": true,
-    "resolveJsonModule": true
-    // "strictNullChecks": true,
-    // "noImplicitThis": true,
-    // "checkJs": true,
-    // "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "strict": true,
   },
   "include": [
     "./src/**/**/*",
