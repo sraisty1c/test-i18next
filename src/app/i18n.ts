@@ -12,6 +12,7 @@ i18n.use(initReactI18next).init(
     lng: 'en',
     fallbackLng: 'en',
     ns: ['translation', 'help', 'settings'],
+    initImmediate: false,
   },
   (err: Error, t: TFunction) => {
     console.log(`i18N initialized. Language: ${t('langCode')}`);
