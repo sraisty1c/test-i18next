@@ -1,7 +1,7 @@
 import { mount, ReactWrapper } from 'enzyme';
 import * as React from 'react';
 import { I18nextProvider } from 'react-i18next';
-import i18nextEnTest from '../../test-helpers/i18nTestEn';
+// import i18nextEnTest from '../../test-helpers/i18nTestEn';
 import App from './App';
 import { appStrings } from '../../../assets/i18n/appStrings.json';
 import i18next from '../i18n';
