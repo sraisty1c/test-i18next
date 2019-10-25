@@ -19,13 +19,6 @@ module.exports = {
     publicPath: '/',
     filename: 'js/[name].bundle.js',
   },
-  // watch: true,
-  // watchOptions: {
-  //   ignored: /node_modules/,
-  //   aggregateTimeout: 300,
-  //   poll: 1000
-  // },
-  // devtool: 'source-map',
   devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],

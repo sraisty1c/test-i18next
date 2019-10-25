@@ -1,5 +1,4 @@
 import { getMyBirthday } from './util';
-// import i18next from '../../test-helpers/i18nTestEn';
 import i18next from '../i18n';
 
 describe('Regular TS function', () => {

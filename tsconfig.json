@@ -2,12 +2,13 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
+    "checkJs": true,
     "jsx": "react",
     "module": "commonjs",
     // "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "./dist/",
-    "removeComments": true,
+    "removeComments": false,
     "sourceMap": true,
     "target": "es5",
     "lib": [

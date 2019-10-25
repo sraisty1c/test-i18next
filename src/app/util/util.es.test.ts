@@ -1,8 +1,9 @@
 import { getMyBirthday } from './util';
-// import i18next from '../../test-helpers/i18nTestEs';
 import i18next from '../i18n';
 
 describe('Regular TS function', () => {
+  const oldLang = i18next.language;
+
   beforeEach(() => {
     i18next.changeLanguage('es');
   });
@@ -13,6 +14,6 @@ describe('Regular TS function', () => {
     expect(bday).toEqual('1980/08/05');
   });
   afterEach(() => {
-    i18next.changeLanguage('en');
+    i18next.changeLanguage(oldLang);
   });
 });

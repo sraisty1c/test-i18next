@@ -2,13 +2,11 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { getMyBirthday } from '../util/util';
 
-export type HelloProps = {
-  compiler: string;
-  framework: string;
-  bundler: string;
+export type AppProps = {
+  testMessage: string;
 };
 
-const App: React.FC<HelloProps> = ({ compiler, framework, bundler }) => {
+const App: React.FC<AppProps> = ({ testMessage }) => {
   const { t, i18n } = useTranslation();
   const { language } = i18n;
   console.log(`The language is ${language}`);
@@ -18,13 +16,10 @@ const App: React.FC<HelloProps> = ({ compiler, framework, bundler }) => {
   };
   return (
     <>
-      <h2>
-        This is a YOW {framework} application using the {compiler} compiler with the {bundler}
-        bundler.
-      </h2>
-      <p>Here is a REALLY AWESOME translated welcome message:</p>
+      <h2>{testMessage}</h2>
+      <p>Click the button to change the language below:</p>
       <button onClick={(): void => changeLanguage('es')} type="button">
-        Espanol
+        Español
       </button>
       <button onClick={(): void => changeLanguage('en')} type="button">
         English

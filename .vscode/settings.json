@@ -7,7 +7,4 @@
     { "language": "typescript", "autoFix": true },
     { "language": "typescriptreact", "autoFix": true }
   ]
-  // "eslint.workingDirectories": [
-    // { "directory": "./src", "changeProcessCWD": true }
-  // ]
 }
