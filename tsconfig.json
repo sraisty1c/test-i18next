@@ -15,7 +15,7 @@
       "es6",
       "dom"
     ],
-    // "esModuleInterop": true,
+    "esModuleInterop": true,
     // "skipLibCheck": true,
     "resolveJsonModule": true
     // "strictNullChecks": true,
