@@ -27,7 +27,7 @@
   "rules": {
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.test.ts", "**/*.test.tsx", "src/test-helpers/setupTests.ts"] }
+      { "devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/setupEnzyme.ts"] }
     ],
     "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
     "max-len": [
