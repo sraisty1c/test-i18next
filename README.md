@@ -40,7 +40,7 @@ Do you care about this? really? If not, **use** `esModuleInterop: true` and `all
 
 ## Still here?
 
-I assume you **REALLY** want to make `esModuleInterop: false` work, I have found one reliable way to do so for all of the tech, see this code.
+I assume you then **REALLY** want to make `esModuleInterop: false` work, I have found one reliable way to do so for all of the various module types and loaders, both jest/node and webpack.
 
 Namely:
 
@@ -63,6 +63,7 @@ Then navigate to http://localhost:3000
 
 ## TL;DR
 
-- recommended settings are better indicated by the `esmoduleinterop` branch which is much simpler and **JUST WORKS**. https://github.com/rosskevin/test-i18next/tree/esmoduleinterop
-- libraries can prevent this sort of thing entirely by using named exports. There is no incompatibility in resolution past/present. I repeat, do not use `export default` and this entire problem disappears, both in js and typescript land.
-- this is not a "typescript" problem, but it is [one that typescript exposes](https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547147927). One such example is from a non-typescript commonjs library loading issue in webpack https://github.com/webpack/webpack/issues/5756.
+- Use `esModuleInterop: true`, it is much simpler and **JUST WORKS**. https://github.com/rosskevin/test-i18next/tree/esmoduleinterop
+- Libraries can prevent this sort of thing entirely by using **named** exports only - no default exports. There is no incompatibility in resolution past/present.
+- I repeat, do not use `export default` and this entire problem disappears, both in js and typescript land.
+- This is not a "typescript" problem, but it is [one that typescript exposes](https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547147927). One such example is from a non-typescript commonjs library loading issue in webpack https://github.com/webpack/webpack/issues/5756.
