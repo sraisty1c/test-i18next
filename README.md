@@ -4,9 +4,21 @@
 
 `import * as i18next from 'i18next'`
 
-I RECOMMEND you DO NOT use this branch or settings. I leave this branch as the default to explain all the reasons you probably DO NOT want to use `esModuleInterop: false`.
+---
 
-I RECOMMEND you USE `esModuleInterop: true` here https://github.com/rosskevin/test-i18next/tree/esmoduleinterop.
+This repo is a full explanation with a working example of `esModuleInterop: false` (NOT RECOMMENDED):
+https://github.com/rosskevin/test-i18next/tree/non-esmoduleinterop-ts-loader
+
+and a companion branch of `esModuleInterop: true` (RECOMMENDED).
+https://github.com/rosskevin/test-i18next/tree/esmoduleinterop
+
+I want to be clear: this is not a _typescript problem_, it is one that _typescript exposes_. Webpack insists on specific loader semantics, nodejs is stuck in commonjs loading semantics, libraries offer various bundles for consumer optimization (commonjs, esm), and test tools have a different runtime than web browsers.
+
+`esModuleInterop: false` says:
+
+> I know what I am doing, I care about the differences and I want it to break.
+
+This IS NOT what userland typically wants. If you are not an expert user that wants to master the module types differences in imports and manipulation of module loading for jest and webpack, then DO NOT use this setting. If you want it to just work, typescript is quite awesome, it covers all of these differences noted above with a simple `esModuleInterop: true`.
 
 ---
 
