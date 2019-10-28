@@ -7,7 +7,7 @@
     "prettier": "prettier --write \"{,**/}*.{ts,tsx,js,json,md}\"",
     "reinstall": "rm -rf package-lock.json node_modules && npm i",
     "typecheck": "tsc --noEmit",
-    "prebuild": "npm run typecheck",
+    "prebuild": "rm -rf dist && npm run typecheck && npm run test",
     "build": "./node_modules/.bin/webpack",
     "start": "npm run build && node src/server/server.js",
     "test": "jest --runInBand"
