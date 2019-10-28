@@ -29,26 +29,26 @@ module.exports = {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
         use: [
-          // {
-          //   loader: 'babel-loader',
-          //   options: babelOptions
-          // },
+          {
+            loader: 'babel-loader',
+            //   options: babelOptions
+          },
           {
             loader: 'ts-loader',
-            // options: { transpileOnly: true }
+            options: { transpileOnly: true },
           },
         ],
       },
-      // {
-      //   test: /\.jsx?$/,
-      //   exclude: /node_modules/,
-      //   use: [
-      //     {
-      //       loader: 'babel-loader',
-      //       options: babelOptions
-      //     }
-      //   ]
-      // },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            // options: babelOptions
+          },
+        ],
+      },
       {
         test: /\.js$/,
         use: 'source-map-loader',

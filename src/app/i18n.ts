@@ -1,9 +1,10 @@
-import * as i18n from 'i18next';
+// import * as i18n from 'i18next';
+import * as i18nextDefault from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { appStrings } from '../../assets/i18n/appStrings.json';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const i18next: typeof i18nextDefault = require('i18next');
+const i18n: typeof i18nextDefault = require('i18next');
 
 i18n.use(initReactI18next).init(
   {
@@ -13,7 +14,7 @@ i18n.use(initReactI18next).init(
     fallbackLng: 'en',
     ns: ['translation', 'help', 'settings'],
   },
-  (err: Error, t: i18n.TFunction) => {
+  (err: Error, t: i18nextDefault.TFunction) => {
     if (err) {
       console.error(`i18Next initialization error: ${err.message}`);
     } else {

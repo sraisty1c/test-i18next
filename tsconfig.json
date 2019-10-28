@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "checkJs": true,
+    // "checkJs": true,
     "jsx": "react",
     "module": "commonjs",
     // "moduleResolution": "node",
