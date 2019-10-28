@@ -4,9 +4,9 @@
 
 `import * as i18next from 'i18next'`
 
-I RECOMMEND you do not use this, and instead use the `esModuleInterop: true` here https://github.com/rosskevin/test-i18next/tree/esmoduleinterop.
+I RECOMMEND you DO NOT use this branch or settings. I leave this branch as the default to explain all the reasons you probably DO NOT want to use `esModuleInterop: false`.
 
-I leave this branch as the default to explain all the reasons you probably DO NOT want to use `esModuleInterop: false` here.
+I RECOMMEND you USE `esModuleInterop: true` here https://github.com/rosskevin/test-i18next/tree/esmoduleinterop.
 
 ---
 
