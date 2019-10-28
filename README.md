@@ -1,7 +1,14 @@
 # Test Repo (i18next, React, Typescript, Jest/Enzyme, Webpack)
 
 `esModuleInterop: false`
+
 `import * as i18next from 'i18next'`
+
+I RECOMMEND you do not use this, and instead use the `esModuleInterop: true` here https://github.com/rosskevin/test-i18next/tree/esmoduleinterop.
+
+I leave this branch as the default to explain all the reasons you probably DO NOT want to use `esModuleInterop: false` here.
+
+---
 
 A lot of background here:
 https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547144241
