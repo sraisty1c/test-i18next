@@ -25,7 +25,7 @@ const App: React.FC<AppProps> = ({ testMessage }) => {
         English
       </button>
       <p id="welcomeTranslation">{t('welcome')}</p>
-      <p id="bday">{getMyBirthday('sue')}</p>
+      <p id="bday">{getMyBirthday('sueBday')}</p>
     </>
   );
 };

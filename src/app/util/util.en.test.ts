@@ -9,9 +9,9 @@ describe('Regular TS function', () => {
   });
 
   it('Returns bday in US format', () => {
-    const bday = getMyBirthday('sue');
+    const bday = getMyBirthday('sueBday');
     console.log(bday);
-    expect(bday).toEqual('8/5/1980');
+    expect(bday).toEqual('August 5, 1985');
   });
 
   beforeEach(() => {

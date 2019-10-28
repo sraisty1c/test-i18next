@@ -3,14 +3,14 @@
     "en": {
       "translation": {
         "welcome": "Welcome!",
-        "sue": "8/5/1980",
+        "sueBday": "August 5, 1985",
         "langCode": "en (english)"
       }
     },
     "es": {
       "translation": {
         "welcome": "Bienvenidos!",
-        "sue": "1980/08/05",
+        "sueBday": "5 de agosto de 1985",
         "langCode": "es (spanish)"
       }
     }

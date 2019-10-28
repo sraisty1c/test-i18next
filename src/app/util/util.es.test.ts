@@ -9,9 +9,9 @@ describe('Regular TS function', () => {
   });
 
   it('Returns bday in Spanish format', () => {
-    const bday = getMyBirthday('sue');
+    const bday = getMyBirthday('sueBday');
     console.log(bday);
-    expect(bday).toEqual('1980/08/05');
+    expect(bday).toEqual('5 de agosto de 1985');
   });
   afterEach(() => {
     i18next.changeLanguage(oldLang);
