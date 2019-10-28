@@ -1,4 +1,8 @@
-# Test Repo (i18next, React, Typescript, Jest/Enzyme, Webpack)
+# esModuleInterop explanation
+
+This is a working test repo with i18next, React, Typescript, Jest/Enzyme, Webpack
+
+---
 
 `esModuleInterop: false`
 
@@ -11,6 +15,8 @@ https://github.com/rosskevin/test-i18next/tree/non-esmoduleinterop-ts-loader
 
 and a companion branch of `esModuleInterop: true` (RECOMMENDED).
 https://github.com/rosskevin/test-i18next/tree/esmoduleinterop
+
+---
 
 I want to be clear: this is not a _typescript problem_, it is one that _typescript exposes_. Webpack insists on specific loader semantics, nodejs is stuck in commonjs loading semantics, libraries offer various bundles for consumer optimization (commonjs, esm), and test tools have a different runtime than web browsers.
 
