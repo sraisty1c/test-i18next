@@ -1,60 +1,46 @@
 # Test Repo (i18next, React, Typescript, Jest/Enzyme, Webpack)
 
-This test repo reproduces issues that we are seeing with moving our React-Typescript project from using i18next v17.1.0 and react-i18next 10.13.1 to current versions (i18next v17.3.1 & react-i18next v10.13.2).
+A lot of background here:
+https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547144241
 
-Everything worked before with the older versions, but we can't seem to get rid of type error occurring in our i18n.ts file, where we import the i18next instance, then we initialize it, and re-export it.
+Using typescript's `esModuleInterop: false` where you are saying effectively:
 
-The error we see is: "Uncaught TypeError: i18n.use is not a function at Object../src/app/i18n.ts (i18n.ts:9)"
+> I know the difference between commonjs and esm modules, I care about how they are imported and exported, and I want to break if there is a difference.
 
-Basically, depending on how I import i18next into my i18n.ts file, either:
+This has implications that most people don't care, or want to know about.
 
-1. the web app fails in the browser with this type error, but my jest/enzyme integration tests pass,
-   OR
-2. the web app works fine (no error) but all my jest/enzyme tests fail with the aforementioned type error.
+This issue particularly affects i18next among many other dependencies because it uses `export default` (strongly discouraged in my opinion) as well as offers `commonjs`, `esm`, `umd` (quite nice in my opinion).
 
-## My attempts to fix this:
+- Is this dependency `esm`? `commonjs`?
+- Does it use `export default`? `export {named}`? `module.exports =`? `module.exports = {named}`
 
-1. If I do the following in src/app/i18n.js , then the tests pass but the web app fails in the browser:
+Do you care about this? really? If not, **use** `esModuleInterop: true` and `allowSyntheticDefaults: true` **and be done with all of this.**
 
-```
-import * as i18n from 'i18next';
-```
+## Still here?
 
-2. If I do this instead, then the web app works, but tests fail:
+I assume you **REALLY** want to make `esModuleInterop: false` work, I have found one reliable way to do so for all of the tech, see this code.
 
-```
-import i18n from 'i18next';
-```
+Namely:
 
-3. If I do this (which I saw suggested in [this thread](https://github.com/i18next/i18next/issues/1177)), it fails in the browser but tests pass:
+1. Use ts-loader before babel and FORCE `es5` production
+2. Alter webpack `mainFields` to FORCE `main` resolution of commonjs modules before `module` (`esm`)
 
-```
-import * as i18nextDefault from 'i18next'
-const i18n: typeof i18nextDefault = require('i18next');
-```
+If you do this, it will work for all. Do I recommend this? ABSOLUTELY NOT. I DO NOT but it is your prerogative.
 
-4.  Setting tconfig.json option 'esModuleInterop' to TRUE works (both the web app works AND the tests all pass), but unfortunately I cannot use this project-wide setting because it causes dozens of other libraries used by our project to fail.
+# Test all of it
 
-# To test the webapp
+These scripts are setup to expediently test all stages of this process. THIS IS NOT a starter project, but an example to verify working status.
 
 ```
 cd <PROJECTDIR>
 npm install
-npm run build
 npm run start
 ```
 
 Then navigate to http://localhost:3000
 
-# To run the Jest/Enzyme integration tests
+## TL;DR
 
-```
-cd <PROJECTDIR>
-npm run test
-```
-
-## Problems found
-
-- project did not `typecheck`
-- lock `"@types/jest": "24.0.19",` https://github.com/FormidableLabs/enzyme-matchers/issues/318
--
+- recommended settings are better indicated by the `esmoduleinterop` branch which is much simpler and **JUST WORKS**. https://github.com/rosskevin/test-i18next/tree/esmoduleinterop
+- libraries can prevent this sort of thing entirely by using named exports. There is no incompatibility in resolution past/present. I repeat, do not use `export default` and this entire problem disappears, both in js and typescript land.
+- this is not a "typescript" problem, but it is [one that typescript exposes](https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547147927). One such example is from a non-typescript commonjs library loading issue in webpack https://github.com/webpack/webpack/issues/5756.
