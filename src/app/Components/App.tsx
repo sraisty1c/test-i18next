@@ -1,19 +1,19 @@
-import * as React from 'react';
-import { useTranslation } from 'react-i18next';
-import { getMyBirthday } from '../util/util';
+import * as React from 'react'
+import { useTranslation } from 'react-i18next'
+import { getMyBirthday } from '../util/util'
 
 export type AppProps = {
-  testMessage: string;
-};
+  testMessage: string
+}
 
 const App: React.FC<AppProps> = ({ testMessage }) => {
-  const { t, i18n } = useTranslation();
-  const { language } = i18n;
-  console.log(`The language is ${language}`);
+  const { t, i18n } = useTranslation()
+  const { language } = i18n
+  console.log(`The language is ${language}`)
 
   const changeLanguage = (lng: string): void => {
-    i18n.changeLanguage(lng);
-  };
+    i18n.changeLanguage(lng)
+  }
   return (
     <>
       <h2>{testMessage}</h2>
@@ -27,7 +27,7 @@ const App: React.FC<AppProps> = ({ testMessage }) => {
       <p id="welcomeTranslation">{t('welcome')}</p>
       <p id="bday">{getMyBirthday('sueBday')}</p>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

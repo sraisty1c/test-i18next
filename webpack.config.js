@@ -1,6 +1,6 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // const babelOptions = {
 //   babelrc: true,
@@ -60,4 +60,4 @@ module.exports = {
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'app', 'index.html') }),
     new webpack.HotModuleReplacementPlugin(),
   ],
-};
+}
