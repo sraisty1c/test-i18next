@@ -12,7 +12,7 @@ OR
 
 ## My attempts to fix this:
 
-1) If I do the following in my i18n.js , then the tests pass but the web app fails in the browser:
+1) If I do the following in src/app/i18n.js , then the tests pass but the web app fails in the browser:
 ```
 import * as i18n from 'i18next';
 ```
@@ -28,9 +28,7 @@ import * as i18nextDefault from 'i18next'
 const i18n: typeof i18nextDefault = require('i18next');
 ```
 
-4)  Setting tconfig's 'esModuleInterop' to TRUE works:  the web app works AND the tests all pass, but unfortunately I cannot use this project-wide setting because it causes dozens of other libraries used by our project to fail.
-
-I have a sample repo that reproduces the problem here:
+4)  Setting tconfig.json option 'esModuleInterop' to TRUE works (both the web app works AND the tests all pass), but unfortunately I cannot use this project-wide setting because it causes dozens of other libraries used by our project to fail.
 
 
 # To test the webapp
