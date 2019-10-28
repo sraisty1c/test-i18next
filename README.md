@@ -22,7 +22,7 @@ I want to be clear: this is not a _typescript problem_, it is one that _typescri
 
 `esModuleInterop: false` says:
 
-> I know the difference between commonjs and esm modules, I care about the semantics of how they are imported and exported, I care about how each of my tools are going to load those modules, and I want to break if there is a difference.
+> I know the difference between commonjs and esm modules, I care about the semantics of how they are imported and exported, I care about how each of my runtimes are going to load those modules, and I want to break if there is a difference.
 
 This has implications that most people don't care, or want to know about.
 
@@ -30,23 +30,26 @@ This IS NOT what a user typically wants. If you are not an expert user that want
 
 ## Background
 
-A lot of background here:
-https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547144241
+This stemmed from a new user sample: https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547144241
 
-This issue shows up in i18next repo often I think for two reasons:
+This issue shows up in i18next repo often for new users I think for a few reasons:
 
 1.  i18next is very popular and one of the first libraries added to new efforts
 2.  i18next uses `export default` and offers `commonjs` as well as `esm` builds
+3.  typescript defaults `esModuleInterop: false` instead of the easier path of `true`
 
-But i18next is not alone, this is a problem that will show up in many dependencies, it just hits i18next setup first.
+i18next is certainly not alone, this is a problem will show up in many dependencies, but it just hits i18next very early because it is very early in any runtime setup.
 
 ## Gory details
 
+A combination of things make this difficult to understand, it is actually an entire set of circumstances that makes different syntaxes and modules incompatible:
+
 1. node uses `commonjs` dependencies (e.g. jest)
-2. webpack prioritizes `esm` `module` dependencies over `main` `commonjs`
-3. typescript transpilation often targets `es2015`, allowing babel to deal with the rest and `import * as` is valid javascript.
-4. `esModuleInterop: false` with `import * as i18n from 'ii18next'` generates `var i18n = require("i18next")` which does not resolve the `module.default`. This is NOT a valid import for an `esm` module, but it is for a `commonjs` module.
-5. `esModuleInterop: true` with `import i18n from 'ii18next'` generates `const i18next_1 = __importDefault(require("i18next"));`. Critically, this generated `__importDefault` helper is triggered to resolve the `default` module and works for BOTH `commonjs` and `esm` modules.
+1. webpack prioritizes `esm` `module` dependencies over `main` `commonjs`
+1. `import * as` is valid ecmascript
+1. typescript transpilation often targets `es2015`, allowing babel to deal with the rest.
+1. `esModuleInterop: false` with `import * as i18n from 'i18next'` generates `var i18n = require("i18next")` which does not resolve the `module.default`. This is NOT a valid import for an `esm` module, but it is for a `commonjs` module.
+1. `esModuleInterop: true` with `import i18n from 'ii18next'` generates `const i18next_1 = __importDefault(require("i18next"));`. Critically, this generated `__importDefault` helper is triggered to resolve the `default` module and works for BOTH `commonjs` and `esm` modules.
 
 Many libraries `export default` (strongly discouraged in my opinion) as well as offer `commonjs`, `esm`, `umd` (quite nice in my opinion).
 
