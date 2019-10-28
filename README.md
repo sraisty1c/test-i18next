@@ -16,20 +16,16 @@ I want to be clear: this is not a _typescript problem_, it is one that _typescri
 
 `esModuleInterop: false` says:
 
-> I know what I am doing, I care about the differences and I want it to break.
-
-This IS NOT what userland typically wants. If you are not an expert user that wants to master the module types differences in imports and manipulation of module loading for jest and webpack, then DO NOT use this setting. If you want it to just work, typescript is quite awesome, it covers all of these differences noted above with a simple `esModuleInterop: true`.
-
----
-
-A lot of background here:
-https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547144241
-
-Using typescript's `esModuleInterop: false` where you are saying effectively:
-
 > I know the difference between commonjs and esm modules, I care about how they are imported and exported, and I want to break if there is a difference.
 
 This has implications that most people don't care, or want to know about.
+
+This IS NOT what userland typically wants. If you are not an expert user that wants to master the module types differences in imports and manipulation of module loading for jest and webpack, then DO NOT use this setting. If you want it to just work, typescript is quite awesome, it covers all of these differences noted above with a simple `esModuleInterop: true`.
+
+## Background
+
+A lot of background here:
+https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547144241
 
 This issue particularly affects i18next among many other dependencies because it uses `export default` (strongly discouraged in my opinion) as well as offers `commonjs`, `esm`, `umd` (quite nice in my opinion).
 
