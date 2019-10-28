@@ -1,5 +1,8 @@
 # Test Repo (i18next, React, Typescript, Jest/Enzyme, Webpack)
 
+`esModuleInterop: false`
+`import * as i18next from 'i18next'`
+
 A lot of background here:
 https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547144241
 
