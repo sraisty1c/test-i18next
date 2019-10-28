@@ -27,14 +27,32 @@ This IS NOT what userland typically wants. If you are not an expert user that wa
 A lot of background here:
 https://github.com/i18next/react-i18next-gitbook/issues/63#issuecomment-547144241
 
-This issue particularly affects i18next among many other dependencies because it uses `export default` (strongly discouraged in my opinion) as well as offers `commonjs`, `esm`, `umd` (quite nice in my opinion).
+This issue shows up in i18next repo often I think for two reasons:
+
+1.  i18next is very popular and one of the first libraries added to new efforts
+2.  i18next uses `export default` and offers `commonjs` as well as `esm` builds
+
+But i18next is not alone, this is a problem that will show up in many dependencies, it just hits i18next setup first.
+
+## Gory details
+
+1. node uses `commonjs` dependencies (e.g. jest)
+2. webpack prioritizes `esm` `module` dependencies over `main` `commonjs`
+3. typescript transpilation often targets `es2015`, allowing babel to deal with the rest and `import * as` is valid javascript.
+4. `esModuleInterop: false` with `import * as i18n from 'ii18next'` generates `var i18n = require("i18next")` which does not resolve the `module.default`. This is NOT a valid import for an `esm` module, but it is for a `commonjs` module.
+5. `esModuleInterop: true` with `import i18n from 'ii18next'` generates `const i18next_1 = __importDefault(require("i18next"));`. Critically, this generated `__importDefault` helper is triggered to resolve the `default` module and works for BOTH `commonjs` and `esm` modules.
+
+Many libraries `export default` (strongly discouraged in my opinion) as well as offer `commonjs`, `esm`, `umd` (quite nice in my opinion).
+
+If you use `esModuleInterop: false` then you have to know and manipulate for:
 
 - Is this dependency `esm`? `commonjs`?
 - Does it use `export default`? `export {named}`? `module.exports =`? `module.exports = {named}`
-
-Do you care about this? really? If not, **use** `esModuleInterop: true` and `allowSyntheticDefaults: true` **and be done with all of this.**
+- Am I running it with node (`commonjs`) or webpack (default priority is `esm` then `commonjs`)
 
 ## Still here?
+
+Do you care about this? really? If not, **use** `esModuleInterop: true` and `allowSyntheticDefaults: true` **and be done with all of this.**
 
 I assume you then **REALLY** want to make `esModuleInterop: false` work, I have found one reliable way to do so for all of the various module types and loaders, both jest/node and webpack.
 
