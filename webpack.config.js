@@ -26,12 +26,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(jsx?|tsx?)$/,
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
-            // options: babelOptions
+          },
+          {
+            loader: 'ts-loader',
+            options: { transpileOnly: true },
+          },
+        ],
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
           },
         ],
       },
