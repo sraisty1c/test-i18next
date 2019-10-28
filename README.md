@@ -52,3 +52,9 @@ Then navigate to http://localhost:3000
 cd <PROJECTDIR>
 npm run test
 ```
+
+## Problems found
+
+- project did not `typecheck`
+- lock `"@types/jest": "24.0.19",` https://github.com/FormidableLabs/enzyme-matchers/issues/318
+-

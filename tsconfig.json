@@ -5,35 +5,20 @@
     // "checkJs": true,
     "jsx": "react",
     "module": "commonjs",
-    // "moduleResolution": "node",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "./dist/",
     "removeComments": false,
     "sourceMap": true,
-    "target": "es5",
+    "target": "es2015",
     // Changing the following setting to TRUE fixes tests & the i18next type error in our  web app, but
     // it breaks dozens of other libraries in our app.
     "esModuleInterop": false,
-    "lib": [
-    //   "esnext",
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "dom"],
     "noUnusedLocals": true,
     "resolveJsonModule": true,
-    "strict": true,
+    "strict": true
   },
-  "include": [
-    "./src/**/**/*",
-    "**.ts",
-    "**.tsx",
-    "**.js"
-  ],
-  "exclude": [
-    "node_modules",
-    "webpack",
-    "./src/coverage",
-    "build",
-    "dist"
-  ]
+  "include": ["./src/**/*", "./untyped-modules.d.ts"],
+  "exclude": ["node_modules", "webpack", "./src/coverage", "build", "dist"]
 }
