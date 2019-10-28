@@ -22,6 +22,8 @@ module.exports = {
   devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    // if you want to run without esModuleInterop: true, then you have to force it back to commonjs land.
+    mainFields: ['browser', 'main', 'module'],
   },
   module: {
     rules: [
