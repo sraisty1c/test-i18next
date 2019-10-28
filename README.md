@@ -22,11 +22,11 @@ I want to be clear: this is not a _typescript problem_, it is one that _typescri
 
 `esModuleInterop: false` says:
 
-> I know the difference between commonjs and esm modules, I care about how they are imported and exported, and I want to break if there is a difference.
+> I know the difference between commonjs and esm modules, I care about the semantics of how they are imported and exported, I care about how each of my tools are going to load those modules, and I want to break if there is a difference.
 
 This has implications that most people don't care, or want to know about.
 
-This IS NOT what userland typically wants. If you are not an expert user that wants to master the module types differences in imports and manipulation of module loading for jest and webpack, then DO NOT use this setting. If you want it to just work, typescript is quite awesome, it covers all of these differences noted above with a simple `esModuleInterop: true`.
+This IS NOT what a user typically wants. If you are not an expert user that wants to master the module types differences in imports and manipulation of module loading for jest and webpack, then DO NOT use this setting. If you want it to just work, typescript is quite awesome, it covers all of these differences noted above with a simple `esModuleInterop: true`.
 
 ## Background
 
@@ -64,10 +64,10 @@ I assume you then **REALLY** want to make `esModuleInterop: false` work, I have 
 
 Namely:
 
-1. Use ts-loader before babel and FORCE `es5` production
+1. Use ts-loader before babel and FORCE `target: es5` production via `tsconfig.json`
 2. Alter webpack `mainFields` to FORCE `main` resolution of commonjs modules before `module` (`esm`)
 
-If you do this, it will work for all. Do I recommend this? ABSOLUTELY NOT. I DO NOT but it is your prerogative.
+If you do this, it will work for jest and webpack. Do I recommend this? ABSOLUTELY NOT. I DO NOT but it is your prerogative.
 
 # Test all of it
 
