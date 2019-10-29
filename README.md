@@ -35,7 +35,7 @@ This stemmed from a new user sample: https://github.com/i18next/react-i18next-gi
 This issue shows up in i18next repo often for new users I think for a few reasons:
 
 1.  i18next is very popular and one of the first libraries added to new efforts
-2.  i18next uses `export default` and offers `commonjs` as well as `esm` builds
+2.  i18next uses `export default` in addition to other named exports from the index and offers `commonjs` as well as `esm` builds
 3.  typescript defaults `esModuleInterop: false` instead of the easier path of `true`
 
 i18next is certainly not alone, this is a problem will show up in many dependencies, but it just hits i18next very early because it is very early in any runtime setup.
