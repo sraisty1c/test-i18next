@@ -1,6 +1,6 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // const babelOptions = {
 //   babelrc: true,
@@ -22,6 +22,8 @@ module.exports = {
   devtool: 'inline-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    // if you want to run without esModuleInterop: true, then you have to force it back to commonjs land.
+    mainFields: ['browser', 'main', 'module'],
   },
   module: {
     rules: [
@@ -31,7 +33,6 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            //   options: babelOptions
           },
           {
             loader: 'ts-loader',
@@ -45,7 +46,6 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            // options: babelOptions
           },
         ],
       },
@@ -60,4 +60,4 @@ module.exports = {
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'app', 'index.html') }),
     new webpack.HotModuleReplacementPlugin(),
   ],
-};
+}
