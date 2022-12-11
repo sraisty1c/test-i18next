@@ -36,7 +36,7 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "i18next": "^17.3.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
